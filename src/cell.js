@@ -63,8 +63,8 @@ function Cell(x,y){
 		var border = this.cellBorder
 		var x = this.x*w
 		var y = this.y*w
+
 		stroke(255, 204, 0)
-		
 		
 		if (border.top){
 			line(x,y,x+w,y)	

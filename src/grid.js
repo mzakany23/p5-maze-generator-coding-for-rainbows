@@ -1,10 +1,8 @@
-var Grid = function(obj) {
-	var size = obj.size
+var Grid = function(size) {
 	this.grid = []
 	w = 40
 	var current
 	var gridSize = 0
-	var count = 0
 	var stack = []
 
 	var make2D = function() {
@@ -42,6 +40,13 @@ var Grid = function(obj) {
 	this.init = function() {
 		this.grid = (make2D(size))
 		current = this.grid[0]
+	}
+
+	this.pause = function() {
+		for (var i=0; i<this.grid.length;i++) {
+			this.count += 1
+			this.grid[i].show()
+		}
 	}
 
 	this.draw = function() {

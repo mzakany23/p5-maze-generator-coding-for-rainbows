@@ -51,7 +51,7 @@ var Grid = function(size) {
 
 	this.draw = function() {
 		for (var i=0; i<this.grid.length;i++) {
-			this.grid[i].show()
+			this.grid[i].show(brc)
 		}
 
 		// set the state of the cell

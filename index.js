@@ -5,6 +5,7 @@ var cycle = false
 // events
 var button1 = document.getElementById('startId')
 var backgroundColor = document.getElementById('backgroundColorId')
+var borderColor = document.getElementById('borderColorId')
 
 // colors
 var bgc = "#4650AB"
@@ -16,14 +17,15 @@ function setup() {
 	
 	button1.addEventListener('click',start)
 	backgroundColor.addEventListener('change',changeBackgroundColor)
+	borderColor.addEventListener('change',changeBorderColor)
 }
 
-function draw() {
+function draw(brc) {
 	background(bgc)
 	if (cycle) {
 		grid.draw(brc)
 	} else {
-		grid.pause()
+		grid.pause(brc)
 	}
 }
 
@@ -37,9 +39,18 @@ function start() {
 	toggle(cycle)
 }
 
+function changeListener(id){
+
+}
+
 function changeBackgroundColor(e) {
 	e.preventDefault()
 	bgc = `#${backgroundColor.value}`
+}
+
+function changeBorderColor(e) {
+	e.preventDefault()
+	brc = `#${borderColorId.value}`
 }
 
 

@@ -1,4 +1,3 @@
-var grid = []
 var gridSize = 400
 var cycle = false
 
@@ -12,24 +11,40 @@ var bgc = "#4650AB"
 var brc = "#E1F440"
 
 function setup() {
+
+	// grid
 	createCanvas(gridSize,gridSize).class('span-3')
-	grid = new Grid(gridSize)
 	
+	grid = new Grid({
+		size: gridSize,
+		backgroundColor: bgc,
+		borderColor: brc,
+	})
+	
+	// events
 	button1.addEventListener('click',start)
 	backgroundColor.addEventListener('change',changeBackgroundColor)
 	borderColor.addEventListener('change',changeBorderColor)
+
 }
 
-function draw(brc) {
+function draw() {
 	background(bgc)
 	if (cycle) {
-		grid.draw(brc)
+		grid.draw()
+		if (grid.done) {
+			button1.innerHTML = "Reset"
+		}
 	} else {
-		grid.pause(brc)
+		grid.pause()
 	}
 }
 
 function toggle(state) {
+	if (button1.innerHTML === "Reset") {
+		grid.reset()
+	}
+
 	cycle = !state
 	cycle ? button1.innerHTML = "Pause" : button1.innerHTML = "Start"
 	return cycle
@@ -37,10 +52,6 @@ function toggle(state) {
 
 function start() {	
 	toggle(cycle)
-}
-
-function changeListener(id){
-
 }
 
 function changeBackgroundColor(e) {

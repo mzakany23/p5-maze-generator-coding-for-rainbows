@@ -1,6 +1,11 @@
-var Grid = function(size) {
+var Grid = function(obj) {
+	var size = obj.size 
+	var brc = obj.borderColor
+
 	this.grid = []
-	w = 40
+	this.done = false
+	
+	var w = 40
 	var current
 	var gridSize = 0
 	var stack = []
@@ -10,7 +15,7 @@ var Grid = function(size) {
 		gridSize = size/w
 		for (var x=0; x<gridSize;x++){
 			for (var y=0; y<gridSize;y++){
-				grid.push(new Cell(x,y))
+				grid.push(new Cell(x,y,w))
 			}
 		}
 		return grid
@@ -37,6 +42,13 @@ var Grid = function(size) {
 		}
 	}
 
+	// public
+	this.reset = function() {
+		this.done = false
+		this.grid = []
+		this.init()
+	}
+
 	this.init = function() {
 		this.grid = (make2D(size))
 		current = this.grid[0]
@@ -45,11 +57,15 @@ var Grid = function(size) {
 	this.pause = function() {
 		for (var i=0; i<this.grid.length;i++) {
 			this.count += 1
-			this.grid[i].show()
+			this.grid[i].show(brc)
 		}
 	}
 
 	this.draw = function() {
+		if (this.done) {
+			this.done = false
+		}
+
 		for (var i=0; i<this.grid.length;i++) {
 			this.grid[i].show(brc)
 		}
@@ -76,6 +92,8 @@ var Grid = function(size) {
 			
 		} else if(stack.length > 0) {
 			current = stack.pop()
+		} else {
+			this.done = true
 		}
 	}
 

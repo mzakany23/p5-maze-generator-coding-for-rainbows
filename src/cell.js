@@ -1,4 +1,4 @@
-function Cell(x,y){
+function Cell(x,y,w){
 	this.gridSize = 0
 	this.x = x
 	this.y = y
@@ -59,11 +59,11 @@ function Cell(x,y){
 		rect(x,y,w,w)
 	}
 
-	this.show = function() {
+	this.show = function(brc) {
 		var border = this.cellBorder
 		var x = this.x*w
 		var y = this.y*w
-		
+
 		stroke(brc)
 		
 		if (border.top){

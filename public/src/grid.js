@@ -1,7 +1,6 @@
 var Grid = function(obj) {
 	var size = obj.size 
-	var brc = obj.borderColor
-
+	
 	this.grid = []
 	this.done = false
 	
@@ -20,7 +19,7 @@ var Grid = function(obj) {
 		}
 		return grid
 	}
-
+ 
 	var removeWalls = function(cell1,cell2) {
 		var x = cell1.x - cell2.x
 		var y = cell1.y - cell2.y
@@ -61,6 +60,31 @@ var Grid = function(obj) {
 		}
 	}
 
+	this.drawRules = function() {
+		// draw logic
+		// step 1 pick random neighbor
+		var nbrArr = current.getNeighbors(this.grid,gridSize) // return grid
+		var next = current.selRandNeighbor(nbrArr) // pick random cell
+
+		if (next) {
+			next.visited = true
+
+			// step 2
+			stack.push(current)
+
+			// step 3 remove walls 
+			removeWalls(current,next)
+
+			// step 4
+			current = next
+			
+		} else if(stack.length > 0) {
+			current = stack.pop()
+		} else {
+			this.done = true
+		}
+	}
+
 	this.draw = function() {
 		if (this.done) {
 			this.done = false
@@ -75,27 +99,7 @@ var Grid = function(obj) {
 		current.visited = true
 		current.glow(0,0,255,100)
 
-		// step 1 pick random neighbor
-		var nbrArr = current.getNeighbors(this.grid,gridSize)
-		var next = current.selRandNeighbor(nbrArr)
-
-		if (next) {
-			next.visited = true
-
-			// step 2
-			stack.push(current)
-
-			// step 3 remove walls
-			removeWalls(current,next)
-
-			// step 4
-			current = next
-			
-		} else if(stack.length > 0) {
-			current = stack.pop()
-		} else {
-			this.done = true
-		}
+		this.drawRules()
 	}
 
 	this.init()

@@ -17,8 +17,7 @@ function setup() {
 	
 	grid = new Grid({
 		size: gridSize,
-		backgroundColor: bgc,
-		borderColor: brc,
+		backgroundColor: bgc
 	})
 	
 	// events

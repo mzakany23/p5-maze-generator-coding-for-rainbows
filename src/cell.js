@@ -59,7 +59,8 @@ function Cell(x,y,w){
 		rect(x,y,w,w)
 	}
 
-	this.show = function(brc) {
+	this.show = function() {
+		// border lookup
 		var border = this.cellBorder
 		var x = this.x*w
 		var y = this.y*w

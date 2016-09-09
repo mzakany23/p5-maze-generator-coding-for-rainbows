@@ -67,7 +67,8 @@ var Grid = function(obj) {
 		}
 
 		for (var i=0; i<this.grid.length;i++) {
-			this.grid[i].show(brc)
+			var cell = this.grid[i]
+			cell.show(brc)
 		}
 
 		// set the state of the cell

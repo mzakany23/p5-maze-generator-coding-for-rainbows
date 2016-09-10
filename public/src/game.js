@@ -1,13 +1,13 @@
 var Game = function(players) {
 	this.players = [] 
-	var current = null
-
+	var end = null
+	
 	this.addPlayer = function(player) {
 		this.players.push(player)
 	}
 
-	this.start = function(grid) {
-		grid.draw()
-		this.players[0].show(grid.startCell)
+	this.start = function(maze) {
+		maze.draw()
+		this.players[0].show(maze.startCell)
 	}
 }

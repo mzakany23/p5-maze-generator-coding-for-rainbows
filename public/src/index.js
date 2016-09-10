@@ -1,4 +1,4 @@
-var gridSize = 400
+var mazeSize = 400
 var cycle = false
 var player1 = new Player()
 var game = new Game()
@@ -13,10 +13,10 @@ var bgc = "#4650AB"
 var brc = "#E1F440"
 
 function setup() {	
-	createCanvas(gridSize,gridSize).class('span-3')
+	createCanvas(mazeSize,mazeSize).class('span-3')
 	
-	grid = new Grid({
-		size: gridSize,
+	maze = new Maze({
+		size: mazeSize,
 		backgroundColor: bgc
 	})
 	
@@ -34,21 +34,21 @@ function setup() {
 function draw() {
 	background(bgc)
 
-	if (grid.done) {
-		game.start(grid)
+	if (maze.done) {
+		game.start(maze)
 	} else if (cycle) {
-		grid.draw()
-		if (grid.done) {
+		maze.draw()
+		if (maze.done) {
 			button1.innerHTML = "Reset"
 		}
 	} else {
-		grid.pause()
+		maze.pause()
 	}
 }
 
 function toggle(state) {
 	if (button1.innerHTML === "Reset") {
-		grid.reset()
+		maze.reset()
 	}
 
 	cycle = !state

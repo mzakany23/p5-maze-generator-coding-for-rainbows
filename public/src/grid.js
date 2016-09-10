@@ -1,6 +1,6 @@
-var Grid = function(obj) {
+var Maze = function(obj) {
 	var size = obj.size 
-	this.grid = []
+	this.maze = []
 	this.startCell = null
 	this.done = false
 	
@@ -45,15 +45,19 @@ var Grid = function(obj) {
 		this.startCell = cell
 	}
 
+	this.drawRandomEndCell = function() {
+		return floor(random(1,this.maze.length))
+	}
+
 	this.reset = function() {
 		this.done = false
-		this.grid = []
+		this.maze = []
 		this.init()
 	}
 
 	this.init = function() {
-		this.grid = (make2D(size))
-		current = this.grid[0]
+		this.maze = (make2D(size))
+		current = this.maze[0]
 		this.setStartCell(Object.assign({},current))
 	}
 
@@ -64,7 +68,7 @@ var Grid = function(obj) {
 	this.drawRules = function() {
 		// draw logic
 		// step 1 pick random neighbor
-		var nbrArr = current.getNeighbors(this.grid,gridSize) // return grid
+		var nbrArr = current.getNeighbors(this.maze,gridSize) // return grid
 		var next = current.selRandNeighbor(nbrArr) // pick random cell
 
 		if (next) {
@@ -87,8 +91,8 @@ var Grid = function(obj) {
 	}
 
 	this.draw = function() {
-		for (var i=0; i<this.grid.length;i++) {
-			var cell = this.grid[i]
+		for (var i=0; i<this.maze.length;i++) {
+			var cell = this.maze[i]
 			cell.show(brc)
 		}
 
@@ -103,9 +107,9 @@ var Grid = function(obj) {
 	}
 
 	this.pause = function() {
-		for (var i=0; i<this.grid.length;i++) {
+		for (var i=0; i<this.maze.length;i++) {
 			this.count += 1
-			this.grid[i].show(brc)
+			this.maze[i].show(brc)
 		}
 
 		if (!this.done) {

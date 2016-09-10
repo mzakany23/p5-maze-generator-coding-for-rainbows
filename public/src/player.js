@@ -6,30 +6,31 @@ var Player = function() {
 	
 	var movements = {
 		up: function(){
-			var border1 = grid.grid[grid.startCell.y - 1]
-			if (border1) {
-				grid.startCell.y -= 1
+			var border = maze.maze[maze.startCell.y - 1]
+			if (border) {
+				maze.startCell.y -= 1
 			}
 		},
 		right: function(){
-			var x = grid.startCell.x
-			if (x < (grid.getBounds())) {
-				grid.startCell.x += 1
+			var x = maze.startCell.x
+			if (x < (maze.getBounds())) {
+				maze.startCell.x += 1
 			}
 		},
 		down: function(){
-			var y = grid.startCell.y
-			if (y < grid.getBounds()){
-				grid.startCell.y += 1
+			var y = maze.startCell.y
+			if (y < maze.getBounds()){
+				maze.startCell.y += 1
 			}
 		}, 
 		left: function(){
-			var border1 = grid.grid[grid.startCell.x - 1]
-			if (border1) {
-				grid.startCell.x -= 1	
+			var border = maze.maze[maze.startCell.x - 1]
+			if (border) {
+				maze.startCell.x -= 1	
 			}
 		}
 	}
+
 
 	this.show = function(cell) {
 		var x = cell.x*w

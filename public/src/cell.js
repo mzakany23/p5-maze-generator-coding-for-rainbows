@@ -3,6 +3,7 @@ function Cell(x,y,w){
 	this.x = x
 	this.y = y
 	this.visited = false
+	
 	this.cellBorder = {
 		top: line(x,y,x+w,y),
 		right: line(x+w,y,x+w,y+w),

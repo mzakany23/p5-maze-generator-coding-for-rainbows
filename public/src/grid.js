@@ -1,13 +1,13 @@
 var Grid = function(obj) {
 	var size = obj.size 
-	
 	this.grid = []
+	this.startCell = null
 	this.done = false
 	
 	var w = 40
 	var current
-	var gridSize = 0
 	var stack = []
+	var gridSize = null
 
 	var make2D = function() {
 		var grid = []
@@ -41,7 +41,10 @@ var Grid = function(obj) {
 		}
 	}
 
-	// public
+	this.setStartCell = function(cell) {
+		this.startCell = cell
+	}
+
 	this.reset = function() {
 		this.done = false
 		this.grid = []
@@ -51,13 +54,11 @@ var Grid = function(obj) {
 	this.init = function() {
 		this.grid = (make2D(size))
 		current = this.grid[0]
+		this.setStartCell(Object.assign({},current))
 	}
 
-	this.pause = function() {
-		for (var i=0; i<this.grid.length;i++) {
-			this.count += 1
-			this.grid[i].show(brc)
-		}
+	this.getBounds = function() {
+		return gridSize - 1
 	}
 
 	this.drawRules = function() {
@@ -86,10 +87,6 @@ var Grid = function(obj) {
 	}
 
 	this.draw = function() {
-		if (this.done) {
-			this.done = false
-		}
-
 		for (var i=0; i<this.grid.length;i++) {
 			var cell = this.grid[i]
 			cell.show(brc)
@@ -97,9 +94,23 @@ var Grid = function(obj) {
 
 		// set the state of the cell
 		current.visited = true
-		current.glow(0,0,255,100)
 
+		if (!this.done) {
+			current.glow(0,0,255,100)	
+		}
+		
 		this.drawRules()
+	}
+
+	this.pause = function() {
+		for (var i=0; i<this.grid.length;i++) {
+			this.count += 1
+			this.grid[i].show(brc)
+		}
+
+		if (!this.done) {
+			current.glow(0,0,255,100)	
+		}
 	}
 
 	this.init()

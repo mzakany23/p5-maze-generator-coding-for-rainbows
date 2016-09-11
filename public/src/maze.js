@@ -1,6 +1,7 @@
 var Maze = function(obj) {
 	var size = obj.size 
 	this.maze = []
+	this.endCell = null
 	this.startCell = null
 	this.done = false
 	
@@ -41,12 +42,9 @@ var Maze = function(obj) {
 		}
 	}
 
-	this.setStartCell = function(cell) {
-		this.startCell = cell
-	}
 
-	this.drawRandomEndCell = function() {
-		return floor(random(1,this.maze.length))
+	this.drawRandomEndCell = function(length) {
+		return Math.floor((Math.random() * length) + 1); 
 	}
 
 	this.reset = function() {
@@ -58,7 +56,9 @@ var Maze = function(obj) {
 	this.init = function() {
 		this.maze = (make2D(size))
 		current = this.maze[0]
-		this.setStartCell(Object.assign({},current))
+		this.startCell = Object.assign({},current)
+		var len = this.drawRandomEndCell(this.maze.length)
+		this.endCell = this.maze[len]
 	}
 
 	this.getBounds = function() {
@@ -93,7 +93,12 @@ var Maze = function(obj) {
 	this.draw = function() {
 		for (var i=0; i<this.maze.length;i++) {
 			var cell = this.maze[i]
-			cell.show(brc)
+
+			if (cell === this.endCell) {
+				cell.glow(0,0,0)
+			} else {
+				cell.show()
+			}			
 		}
 
 		// set the state of the cell
@@ -108,8 +113,8 @@ var Maze = function(obj) {
 
 	this.pause = function() {
 		for (var i=0; i<this.maze.length;i++) {
-			this.count += 1
-			this.maze[i].show(brc)
+			this.count += 
+			this.maze[i].show()
 		}
 
 		if (!this.done) {

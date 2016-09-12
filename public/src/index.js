@@ -1,5 +1,6 @@
 var mazeSize = 400
 var w = 40
+var cycle = false
 
 var bgc = "#4650AB"
 var brc = "#E1F440"
@@ -11,11 +12,8 @@ var backgroundColor = document.getElementById('backgroundColorId')
 var borderColor = document.getElementById('borderColorId')
 var gridSize = document.getElementById('gridSize')
 var cellSize = document.getElementById('cellSize')
-var uiForm = document.getElementById('ui-init')
 
 function createGame(w,size,bgc,players) {		
-	startListeners()
-
 	var ui = new UI({
 		w: w,
 		size: mazeSize,
@@ -24,8 +22,6 @@ function createGame(w,size,bgc,players) {
 	})
 	ui.runSetup()
 }
-
-createGame(w,mazeSize,bgc,players)
 
 function startListeners() {
 	// events
@@ -36,11 +32,6 @@ function startListeners() {
 	cellSize.addEventListener('change',changeCellsize)
 }
 
-function uiSubmit(e) {
-	e.preventDefault()
-	mazeSize = parseInt(e.target.value)
-}
-
 function changeGridsize(e) {
 	e.preventDefault()
 	mazeSize = parseInt(e.target.value)
@@ -48,7 +39,6 @@ function changeGridsize(e) {
 
 function changeCellsize(e) {
 	e.preventDefault()
-
 }
 
 function changeBackgroundColor(e) {
@@ -60,3 +50,23 @@ function changeBorderColor(e) {
 	e.preventDefault()
 	brc = `#${borderColorId.value}`
 }
+
+function toggle(state) {
+	if (startBtn.innerHTML === "Reset") {
+		game.maze.reset()
+	}
+
+	cycle = !state
+	cycle ? startBtn.innerHTML = "Pause" : startBtn.innerHTML = "Start"
+	return cycle
+}
+
+function start(e) {	
+	e.preventDefault()
+	toggle(cycle)
+}
+
+createGame(w,mazeSize,bgc,players)
+startListeners()
+
+

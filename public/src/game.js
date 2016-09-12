@@ -1,11 +1,10 @@
 var currentPlayer 
-var cycle = false
 var colSize
 
 var Game = function(obj) {
 	this.players = obj.players ? obj.players : []
 	colSize = obj.size/obj.w
-	
+
 	this.maze = new Maze({
 		w: obj.w,
 		size: obj.size,

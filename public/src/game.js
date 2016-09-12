@@ -1,9 +1,11 @@
 var currentPlayer 
 var cycle = false
+var colSize
 
 var Game = function(obj) {
 	this.players = obj.players ? obj.players : []
-
+	colSize = obj.size/obj.w
+	
 	this.maze = new Maze({
 		w: obj.w,
 		size: obj.size,
@@ -30,7 +32,7 @@ var Game = function(obj) {
 		} else if (cycle) {
 			game.maze.draw()
 			if (game.maze.done) {
-				button1.innerHTML = "Reset"
+				startBtn.innerHTML = "Reset"
 			}
 		} else {
 			game.maze.pause()

@@ -1,7 +1,6 @@
 var p5
 var cycle = false
-
-
+var game 
 
 var UI = function(obj) {
 	var gameInit = function(p) {
@@ -23,16 +22,17 @@ var UI = function(obj) {
 }
 
 function toggle(state) {
-	if (button1.innerHTML === "Reset") {
+	if (startBtn.innerHTML === "Reset") {
 		game.maze.reset()
 	}
 
 	cycle = !state
-	cycle ? button1.innerHTML = "Pause" : button1.innerHTML = "Start"
+	cycle ? startBtn.innerHTML = "Pause" : startBtn.innerHTML = "Start"
 	return cycle
 }
 
-function start() {	
+function start(e) {	
+	e.preventDefault()
 	toggle(cycle)
 }
 

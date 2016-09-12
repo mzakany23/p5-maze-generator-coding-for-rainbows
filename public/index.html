@@ -1,14 +1,13 @@
 <html>
 <head>
+	
 	<style type="text/css">
 		.label {
 			float:left;
 			min-width: 300px;
 		}
-		a {
-			color: blue;
-		}
 	</style>
+
 	<title>maze-gen</title>
 	<link rel="stylesheet" href="./assets/css/uikit.min.css" />
 </head>
@@ -17,7 +16,7 @@
 <div class="uk-grid">
 	<div class="uk-container-center">
 		<h1>Maze Generator</h1>
-		<form id='ui-init' class="uk-form ui-form">
+		<form class="uk-form ui-form">
 			<fieldset>
 				<div class='label'>Background Color:</div> <input id='backgroundColorId' class="jscolor" value="4650AB">
 			</fieldset>
@@ -28,16 +27,17 @@
 			<hr class="uk-grid-divider">
 
 			<fieldset>
-				<div class='label'>Grid Size:</div> <input type='text' value='400'>
+				<div class='label'>Grid Size:</div> <input id='gridSize' type='text' value='400'>
 			</fieldset>
 
 			<fieldset>
-				<div class='label'>Cell Size:</div> <input type='text' value='40'>
+				<div class='label'>Cell Size:</div> <input id='cellSize' type='text' value='40'>
 			</fieldset>
 			
 			<hr class="uk-grid-divider">
 
 			<button class='uk-button-large uk-button-success' id='startId'>Start</button>
+	
 		</form>
 
 		<div id="maze"></div>

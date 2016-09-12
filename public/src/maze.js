@@ -1,18 +1,17 @@
 var Maze = function(obj) {
 	var size = obj.size 
-	this.maze = []
-	this.endCell = null
-	this.startCell = null
-	this.done = false
-	
-	var w = 40
+	var w = obj.w 
 	var current
 	var stack = []
-	var gridSize = null
+	var gridSize = size/w
 
+	this.maze = []
+	this.startCell = null
+	this.finalCell = null
+	this.done = false
+	
 	var make2D = function() {
 		var grid = []
-		gridSize = size/w
 		for (var x=0; x<gridSize;x++){
 			for (var y=0; y<gridSize;y++){
 				grid.push(new Cell(x,y,w))
@@ -42,9 +41,9 @@ var Maze = function(obj) {
 		}
 	}
 
-
-	this.drawRandomEndCell = function(length) {
-		return Math.floor((Math.random() * length) + 1); 
+	this.getRandomCell = function(maze) {
+		// var num = Math.floor((Math.random() * this.maze.length) + 1)
+		return maze[10]
 	}
 
 	this.reset = function() {
@@ -57,8 +56,8 @@ var Maze = function(obj) {
 		this.maze = (make2D(size))
 		current = this.maze[0]
 		this.startCell = Object.assign({},current)
-		var len = this.drawRandomEndCell(this.maze.length)
-		this.endCell = this.maze[len]
+		this.finalCell = this.getRandomCell(this.maze)
+		this.finalCell.finalCell = true
 	}
 
 	this.getBounds = function() {
@@ -94,8 +93,8 @@ var Maze = function(obj) {
 		for (var i=0; i<this.maze.length;i++) {
 			var cell = this.maze[i]
 
-			if (cell === this.endCell) {
-				cell.glow(0,0,0)
+			if (cell === this.finalCell) {
+				this.finalCell.glow(0,0,0)
 			} else {
 				cell.show()
 			}			
@@ -113,7 +112,6 @@ var Maze = function(obj) {
 
 	this.pause = function() {
 		for (var i=0; i<this.maze.length;i++) {
-			this.count += 
 			this.maze[i].show()
 		}
 

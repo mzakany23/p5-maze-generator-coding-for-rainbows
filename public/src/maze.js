@@ -1,19 +1,21 @@
+var gridSize 
+
 var Maze = function(obj) {
 	var size = obj.size 
 	var w = obj.w 
 	var current
 	var stack = []
-	var gridSize = size/w
+	gridSize = size/w
 
 	this.maze = []
 	this.startCell = null
 	this.finalCell = null
 	this.done = false
 	
-	var make2D = function() {
+	var make2D = function(size) {
 		var grid = []
-		for (var x=0; x<gridSize;x++){
-			for (var y=0; y<gridSize;y++){
+		for (var x=0; x<size;x++){
+			for (var y=0; y<size;y++){
 				grid.push(new Cell(x,y,w))
 			}
 		}
@@ -42,19 +44,24 @@ var Maze = function(obj) {
 	}
 
 	this.getRandomCell = function(maze) {
-		var num = Math.floor((Math.random() * this.maze.length) + 1)
-		// return maze[num]
-		return maze[2]
+		var num = Math.floor((Math.random() * maze.length) + 1)
+		return maze[num]
+		// return maze[2]
 	}
 
-	this.reset = function() {
+	this.reset = function(size) {
 		this.done = false
 		this.maze = []
-		this.init()
+		this.setGridSize(size)
+		this.init(size)
 	}
 
-	this.init = function() {
-		this.maze = (make2D(size))
+	this.setGridSize = function(size) {
+		gridSize = size
+	}
+
+	this.init = function(size) {
+		this.maze = make2D(size)
 		current = this.maze[0]
 		this.startCell = Object.assign({},current)
 		this.finalCell = this.getRandomCell(this.maze)
@@ -66,7 +73,8 @@ var Maze = function(obj) {
 	}
 
 	this.drawRules = function() {
-		// draw logic
+
+		// draw logic	
 		// step 1 pick random neighbor
 		var nbrArr = current.getNeighbors(this.maze,gridSize) // return grid
 		var next = current.selRandNeighbor(nbrArr) // pick random cell
@@ -121,5 +129,5 @@ var Maze = function(obj) {
 		}
 	}
 
-	this.init()
+	this.init(gridSize)
 }

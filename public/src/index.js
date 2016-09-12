@@ -18,21 +18,25 @@ var init = {
 	players: [new Player({name: 'mike'})]
 }
 
-function setup() {	
-	createCanvas(mazeSize,mazeSize).class('span-3')
-	game = new Game(init)
+var sketch = function(p) {
+	p.setup = function() {	
+		p5.createCanvas(mazeSize,mazeSize).class('span-3')
+		game = new Game(init)
 
-	// events
-	button1.addEventListener('click',start)
-	backgroundColor.addEventListener('change',changeBackgroundColor)
-	borderColor.addEventListener('change',changeBorderColor)
+		// events
+		button1.addEventListener('click',start)
+		backgroundColor.addEventListener('change',changeBackgroundColor)
+		borderColor.addEventListener('change',changeBorderColor)
 
+	}
+
+	p.draw = function() {
+		p5.background(bgc)	
+		game.run()
+	}
 }
 
-function draw() {
-	background(bgc)	
-	game.run()
-}
+var p5 = new p5(sketch)
 
 function toggle(state) {
 	if (button1.innerHTML === "Reset") {

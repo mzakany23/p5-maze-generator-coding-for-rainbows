@@ -38,19 +38,19 @@ var Game = function(obj) {
 }
 
 var keyPressed = function() {
-	if (keyCode === UP_ARROW) {
+	if (p5.keyCode === p5.UP_ARROW) {
 		currentPlayer.move('up')
 	}
 
-	if (keyCode === RIGHT_ARROW) {
+	if (p5.keyCode === p5.RIGHT_ARROW) {
 		currentPlayer.move('right')
 	}
 
-	if (keyCode === DOWN_ARROW) {
+	if (p5.keyCode === p5.DOWN_ARROW) {
 		currentPlayer.move('down')
 	}
 
-	if (keyCode === LEFT_ARROW) {
+	if (p5.keyCode === p5.LEFT_ARROW) {
 		currentPlayer.move('left')
 	}
 }

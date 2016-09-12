@@ -70,9 +70,9 @@ var Player = function(obj) {
 	this.show = function(cell) {
 		var x = cell.x*w
 		var y = cell.y*w
-		noStroke()
-		fill(255, 204, 0);
-		rect(x,y,w,w)
+		p5.noStroke()
+		p5.fill(255, 204, 0);
+		p5.rect(x,y,w,w)
 	}
 
 	this.move = function(dir) {

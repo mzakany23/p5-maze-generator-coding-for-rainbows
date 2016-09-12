@@ -6,10 +6,10 @@ function Cell(x,y,w){
 	this.finalCell = false
 	
 	this.cellBorder = {
-		top: line(x,y,x+w,y),
-		right: line(x+w,y,x+w,y+w),
-		bottom: line(x+w,y+w,x,y+w),
-		left: line(x,y+w,x,y) 
+		top: p5.line(x,y,x+w,y),
+		right: p5.line(x+w,y,x+w,y+w),
+		bottom: p5.line(x+w,y+w,x,y+w),
+		left: p5.line(x,y+w,x,y) 
 	}
 
 	this.index = function(y,x) {
@@ -47,7 +47,7 @@ function Cell(x,y,w){
 
 	this.selRandNeighbor = function(nbrArr) {
 		if (nbrArr.length > 0) {
-			var r = floor(random(0, nbrArr.length))	
+			var r = p5.floor(p5.random(0, nbrArr.length))	
 			return nbrArr[r]
 		} 
 		return undefined
@@ -56,9 +56,9 @@ function Cell(x,y,w){
 	this.glow = function(r,g,b,a) {
 		var x = this.x *w
 		var y = this.y *w
-		noStroke()
-		fill(r,g,b,a)
-		rect(x,y,w,w)
+		p5.noStroke()
+		p5.fill(r,g,b,a)
+		p5.rect(x,y,w,w)
 	}
 
 	this.show = function() {
@@ -67,28 +67,28 @@ function Cell(x,y,w){
 		var x = this.x*w
 		var y = this.y*w
 
-		stroke(brc)
+		p5.stroke(brc)
 		
 		if (border.top){
-			line(x,y,x+w,y)	
+			p5.line(x,y,x+w,y)	
 		} 
 
 		if (border.right) {
-			line(x+w,y,x+w,y+w)	
+			p5.line(x+w,y,x+w,y+w)	
 		} 
 
 		if (border.bottom) {
-			line(x+w,y+w,x,y+w)	
+			p5.line(x+w,y+w,x,y+w)	
 		} 
 
 		if (border.left) {
-			line(x,y+w,x,y) 
+			p5.line(x,y+w,x,y) 
 		}
 
 		if (this.visited) {
-			noStroke()
-			fill(255,0,255,100)
-			rect(x,y,w,w)
+			p5.noStroke()
+			p5.fill(255,0,255,100)
+			p5.rect(x,y,w,w)
 		}
 	}
 }

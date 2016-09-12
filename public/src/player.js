@@ -3,7 +3,7 @@ var Player = function(obj) {
 
 	var movements = {
 		position: function(x,y) {
-			return game.maze.maze[((x*10)+y)]
+			return game.maze.maze[((x*w)+y)]
 		},
 		areEqual: function(c1,c2) {
 			return c1.x === c2.x && c1.y === c2.y

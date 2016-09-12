@@ -42,8 +42,9 @@ var Maze = function(obj) {
 	}
 
 	this.getRandomCell = function(maze) {
-		// var num = Math.floor((Math.random() * this.maze.length) + 1)
-		return maze[10]
+		var num = Math.floor((Math.random() * this.maze.length) + 1)
+		// return maze[num]
+		return maze[2]
 	}
 
 	this.reset = function() {

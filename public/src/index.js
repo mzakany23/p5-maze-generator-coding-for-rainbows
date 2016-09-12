@@ -1,55 +1,41 @@
 var mazeSize = 400
-var cycle = false
 var w = 40
 
-// color
 var bgc = "#4650AB"
 var brc = "#E1F440"
+var players = [new Player({name: 'mike'})]
 
 // events
 var button1 = document.getElementById('startId')
 var backgroundColor = document.getElementById('backgroundColorId')
 var borderColor = document.getElementById('borderColorId')
+var uiForm = document.getElementById('ui-init')
 
-var init = {
-	w: w,
-	size: mazeSize,
-	backgroundColor: bgc,
-	players: [new Player({name: 'mike'})]
+function createGame(w,size,bgc,players) {		
+	startListeners()
+
+	var ui = new UI({
+		w: w,
+		size: mazeSize,
+		backgroundColor: bgc,
+		players: players
+	})
+	ui.runSetup()
 }
 
-var sketch = function(p) {
-	p.setup = function() {	
-		p5.createCanvas(mazeSize,mazeSize).class('span-3')
-		game = new Game(init)
+createGame(w,mazeSize,bgc,players)
 
-		// events
-		button1.addEventListener('click',start)
-		backgroundColor.addEventListener('change',changeBackgroundColor)
-		borderColor.addEventListener('change',changeBorderColor)
-
-	}
-
-	p.draw = function() {
-		p5.background(bgc)	
-		game.run()
-	}
+function startListeners() {
+	// events
+	button1.addEventListener('click',start)
+	backgroundColor.addEventListener('change',changeBackgroundColor)
+	borderColor.addEventListener('change',changeBorderColor)
+	uiForm.addEventListener('submit',uiSubmit)
 }
 
-var p5 = new p5(sketch)
-
-function toggle(state) {
-	if (button1.innerHTML === "Reset") {
-		maze.reset()
-	}
-
-	cycle = !state
-	cycle ? button1.innerHTML = "Pause" : button1.innerHTML = "Start"
-	return cycle
-}
-
-function start() {	
-	toggle(cycle)
+function uiSubmit(e) {
+	e.preventDefault()
+	console.log(e)
 }
 
 function changeBackgroundColor(e) {
@@ -61,4 +47,3 @@ function changeBorderColor(e) {
 	e.preventDefault()
 	brc = `#${borderColorId.value}`
 }
-

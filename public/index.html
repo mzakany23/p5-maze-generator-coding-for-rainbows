@@ -1,46 +1,57 @@
 <html>
 <head>
-	<title>maze</title>
 	<style type="text/css">
-		body{
-			width:90%;
-			margin:0 auto;
+		.label {
+			float:left;
+			min-width: 300px;
 		}
-		.span-1, .span-2, .span-3 {
-			min-height: 100px;
-			float: left;
-			margin-right: 3.33333%;
-			margin-bottom: 10px;
+		a {
+			color: blue;
 		}
-
-		.span-1 {
-			width: 30%;
-		}
-
-		.span-2 {
-			width: 63.33333%;
-		}
-
-		.span-3 {
-			width: 96.66666%;
-		}
-
-		.span-4 {
-			width: 30%;
-		}
-
 	</style>
+	<title>maze-gen</title>
+	<link rel="stylesheet" href="./assets/css/uikit.min.css" />
 </head>
 <body>
 
-<div class="span-3">
-	<h1>maze generator</h1>
-	Background Color: <input id='backgroundColorId' class="jscolor" value="4650AB">
-	Border Color: <input id='borderColorId' class="jscolor" value="E1F440">
+<div class="uk-grid">
+	<div class="uk-container-center">
+		<h1>Maze Generator</h1>
+		<form id='ui-init' class="uk-form ui-form">
+			<fieldset>
+				<div class='label'>Background Color:</div> <input id='backgroundColorId' class="jscolor" value="4650AB">
+			</fieldset>
+			<fieldset>
+				<div class='label'>Border Color:</div> <input id='borderColorId' class="jscolor" value="E1F440">
+			</fieldset>
 
-	<br>
-	<button id='startId'>Start</button>
+			<hr class="uk-grid-divider">
+
+			<fieldset>
+				<div class='label'>Grid Size:</div> <input type='text' value='400'>
+			</fieldset>
+
+			<fieldset>
+				<div class='label'>Cell Size:</div> <input type='text' value='40'>
+			</fieldset>
+			
+			<hr class="uk-grid-divider">
+
+			<button class='uk-button-large uk-button-success' id='startId'>Start</button>
+		</form>
+
+		<div id="maze"></div>
+
+		<div class="footer">
+			<hr class="uk-grid-divider">
+			<ul class="uk-subnav uk-subnav-line">
+			    <li><a href="https://github.com/mzakany23/p5-maze-generator-coding-for-rainbows"><img src="./assets/img/gh.png" width='100'></a></li>
+			</ul>
+		</div>
+	</div>
 </div>
+
+
 
 <script type="text/javascript" src='./assets/js/jscolor.min.js'></script>
 <script type="text/javascript" src='./assets/js/p5.min.js'></script>
@@ -48,6 +59,7 @@
 <script type="text/javascript" src='./src/player.js'></script>
 <script type="text/javascript" src='./src/cell.js'></script>
 <script type="text/javascript" src='./src/game.js'></script>
+<script type="text/javascript" src='./src/ui.js'></script>
 <script type="text/javascript" src='./src/index.js'></script>
 </body>
 </html>

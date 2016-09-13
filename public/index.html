@@ -6,13 +6,14 @@
 			float:left;
 			min-width: 300px;
 		}
+
 		.hide {
 			display: none;
 		}
 
 	</style>
 
-	<title>maze-gen</title>
+	<title>Sell-Maze-Gen</title>
 	<link rel="stylesheet" href="./assets/css/uikit.min.css" />
 </head>
 <body>
@@ -20,8 +21,9 @@
 <div class="uk-grid">
 	<div class="uk-container-center">
 
-		<h1>Selleck Waterfall Maze</h1>
+		<h1>Selleck Waterfall Game</h1>
 
+		<p>currently up: <i id='currentPlayer'></i></p>
 		<form id='ui-form' class="uk-form ui-form">
 			<fieldset>
 				<div class='label'>Background Color:</div> <input id='backgroundColorId' class="jscolor" value="4650AB">
@@ -32,22 +34,21 @@
 
 			<hr class="uk-grid-divider">
 
-			<!-- <fieldset>
-				<div class='label'>Grid Size:</div> <input id='gridSize' type='text' value='400'>
-			</fieldset>
-
-			<fieldset>
-				<div class='label'>Cell Size:</div> <input id='cellSize' type='text' value='80'>
-			</fieldset>
-			
-			<hr class="uk-grid-divider"> -->
-
 			<button class='uk-button-large uk-button-success' id='startId'>Start</button>
 	
 		</form>
 		<div id='winner' class='hide'>
+			
 			<img src="./assets/img/tsw.png" width="450">
-			<h1>Tom Selleck Sandwich Waterfall!</h1>
+
+			<div class="uk-grid" style="margin-top: 20px;">
+				<div class="uk-width-1-4">
+					<p><img id='winner-image' src="" width='50'></p>
+				</div>
+				<div class="uk-width-3-4">
+					<h2 style='margin-top: 15px;' id='winner-message'></h2>
+				</div>
+			</div>
 		</div>
 
 		<div class="show">

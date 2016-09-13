@@ -1,5 +1,7 @@
 var Player = function(obj) {
 	this.name = obj.name
+	this.image = obj.image
+	this.p5Image = null
 
 	var movements = {
 		position: function(x,y) {
@@ -13,10 +15,7 @@ var Player = function(obj) {
 				game.finished()
 			}
 		},
-		up: function(){
-			var x = game.maze.startCell.x 
-			var y = game.maze.startCell.y 
-
+		up: function(x,y){
 			var next = this.position(x,y-1)
 			var noWall = next.cellBorder.bottom === false
 
@@ -27,10 +26,7 @@ var Player = function(obj) {
 				this.checkEnd(game.maze.startCell)
 			}
 		},
-		right: function(){
-			var x = game.maze.startCell.x 
-			var y = game.maze.startCell.y 
-			
+		right: function(x,y){
 			var next = this.position(x+1,y)
 			var noWall = next.cellBorder.left === false
 	
@@ -39,10 +35,7 @@ var Player = function(obj) {
 				this.checkEnd(game.maze.startCell)
 			}
 		},
-		down: function(){
-			var x = game.maze.startCell.x
-			var y = game.maze.startCell.y
-			
+		down: function(x,y){
 			var next = this.position(x,y+1)
 			var noWall = next.cellBorder.top === false
 
@@ -51,10 +44,7 @@ var Player = function(obj) {
 				this.checkEnd(game.maze.startCell)
 			}
 		}, 
-		left: function(){
-			var x = game.maze.startCell.x 
-			var y = game.maze.startCell.y 
-			
+		left: function(x,y){
 			var next = this.position(x-1,y)
 			var noWall = next.cellBorder.right === false
 
@@ -70,13 +60,12 @@ var Player = function(obj) {
 	this.show = function(cell) {
 		var x = cell.x*w
 		var y = cell.y*w
-		// p5.noStroke()
-		// p5.fill(255, 204, 0);
-		// p5.rect(x,y,w,w)
-		p5.image(img,x,y,w,w)
+		p5.image(this.p5Image,x,y,w,w)
 	}
 
 	this.move = function(dir) {
-		movements[dir]()
+		var x = game.maze.startCell.x
+		var y = game.maze.startCell.y
+		movements[dir](x,y)
 	}
 }

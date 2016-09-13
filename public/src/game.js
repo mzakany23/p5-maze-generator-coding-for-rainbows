@@ -11,15 +11,26 @@ var Game = function(obj) {
 		this.players.push(player)
 	}
 
+	this.hasPlayers = function() {
+		return playerCount < players.length
+	}
+
 	this.start = function() {
 		this.maze.draw()
-		currentPlayer = this.players[0]
-		currentPlayer.show(this.maze.startCell)
+		if (playerCount === players.length) {playerCount = 0}
+		currentPlayer = this.players[playerCount]
+		document.getElementById('currentPlayer').innerHTML = currentPlayer.name
+		currentPlayer.show(this.maze.startCell)		
+		
 	}
 
 	this.finished = function() {
 		document.getElementById('winner').classList.toggle('hide')
 		document.getElementById('maze').classList.add('hide')
+		var text = `${currentPlayer.name} + Sandwich!`
+		ui.idText('winner-message',text)
+		ui.idImage('winner-image',currentPlayer.image)
+		playerCount += 1
 	}
 
 	this.run = function() {

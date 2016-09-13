@@ -1,7 +1,9 @@
 var UI = function(obj) {
 	var gameInit = function(p) {
 		p.preload = function() {
-		  img = p.loadImage("./assets/img/sel.png");
+			players.map((player) => {
+				player.p5Image = p.loadImage(player.image);
+			})
 		  sandwichImg = p.loadImage("./assets/img/sandwich.png")
 		}
 
@@ -33,7 +35,60 @@ var UI = function(obj) {
 	this.runSetup = function() {
 		p5 = new p5(gameInit)
 	}
+
+	this.idText = function(id,text) {
+		document.getElementById(id).innerHTML = text
+	}
+
+	this.idImage = function(id,src) {
+		document.getElementById(id).src = src
+	}
 }
 
+function createGame(w,size,bgc,players) {		
+	ui = new UI({
+		w: w,
+		size: mazeSize,
+		backgroundColor: bgc,
+		players: players
+	})
+	ui.runSetup()
+}
 
+function startListeners() {
+	// events
+	startBtn.addEventListener('click',start)
+	backgroundColor.addEventListener('change',changeBackgroundColor)
+	borderColor.addEventListener('change',changeBorderColor)
+}
+
+function changeBackgroundColor(e) {
+	e.preventDefault()
+	bgc = `#${backgroundColor.value}`
+}
+
+function changeBorderColor(e) {
+	e.preventDefault()
+	brc = `#${borderColorId.value}`
+}
+
+function toggle(state) {
+	if (startBtn.innerHTML === "Reset") {
+		var mazeDiv = document.getElementById('maze').classList
+		if (mazeDiv.contains('hide')) {
+			mazeDiv.toggle('hide')
+			document.getElementById('winner').classList.toggle('hide')
+		}
+		game.maze.reset(mazeSize/w)
+	}
+
+	cycle = !state
+	cycle ? startBtn.innerHTML = "Pause" : startBtn.innerHTML = "Start"
+	return cycle
+}
+
+function start(e) {	
+	e.preventDefault()
+	toggle(cycle)
+}
 

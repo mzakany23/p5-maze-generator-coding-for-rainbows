@@ -1,5 +1,9 @@
 var UI = function(obj) {
 	var gameInit = function(p) {
+		p.preload = function() {
+		  img = p.loadImage("./assets/img/sel.png");
+		  sandwichImg = p.loadImage("./assets/img/sandwich.png")
+		}
 
 		p.setup = function() {	
 			var cvs = p.createCanvas(obj.size,obj.size).class('span-3')

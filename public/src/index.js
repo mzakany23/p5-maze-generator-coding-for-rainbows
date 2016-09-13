@@ -1,6 +1,6 @@
 // globals
 var mazeSize = 400
-var w = 40
+var w = 80
 var cycle = false
 var bgc = "#4650AB"
 var brc = "#E1F440"
@@ -9,6 +9,8 @@ var p5
 var game 
 var currentPlayer 
 var gridSize 
+var img 
+var sandwichImg 
 
 // events
 var startBtn = document.getElementById('startId')
@@ -42,7 +44,7 @@ function updateSize(e) {
 	var cgs = parseInt(cellSizeInput.value)
 
 	mazeSize = (pgs && pgs >= 400) ? pgs : 400
-	cellSize = (cgs && cgs >= 40)  ? cgs : 40
+	cellSize = (cgs && cgs >= 80)  ? cgs : 80
 
 	ui.update({gs:mazeSize,cs:cellSize})
 }

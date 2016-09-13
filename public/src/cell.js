@@ -61,6 +61,12 @@ function Cell(x,y,w){
 		p5.rect(x,y,w,w)
 	}
 
+	this.showSandwich = function() {
+		var x = this.x *w
+		var y = this.y *w
+		p5.image(sandwichImg,x,y,w,w)
+	}
+
 	this.show = function() {
 		// border lookup
 		var border = this.cellBorder

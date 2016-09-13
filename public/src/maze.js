@@ -105,7 +105,8 @@ var Maze = function(obj) {
 			var cell = this.maze[i]
 
 			if (cell === this.finalCell) {
-				this.finalCell.glow(0,0,0)
+				// this.finalCell.glow(0,0,0)
+				this.finalCell.showSandwich(sandwichImg)
 			} else {
 				cell.show()
 			}			

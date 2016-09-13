@@ -18,7 +18,7 @@ var Game = function(obj) {
 	}
 
 	this.finished = function() {
-		
+		console.log('finisehd do something')
 	}
 
 	this.run = function() {

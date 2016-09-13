@@ -38,8 +38,12 @@ function startListeners() {
 
 function updateSize(e) {
 	e.preventDefault()
-	mazeSize = gridSizeInput.value ? parseInt(gridSizeInput.value) : 400
-	cellSize = cellSizeInput.value ? parseInt(cellSizeInput.value) : 40
+	var pgs = parseInt(gridSizeInput.value)
+	var cgs = parseInt(cellSizeInput.value)
+
+	mazeSize = (pgs && pgs >= 400) ? pgs : 400
+	cellSize = (cgs && cgs >= 40)  ? cgs : 40
+
 	ui.update({gs:mazeSize,cs:cellSize})
 }
 

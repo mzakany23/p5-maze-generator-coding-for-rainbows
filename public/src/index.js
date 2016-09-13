@@ -63,6 +63,11 @@ function changeBorderColor(e) {
 
 function toggle(state) {
 	if (startBtn.innerHTML === "Reset") {
+		var mazeDiv = document.getElementById('maze').classList
+		if (mazeDiv.contains('hide')) {
+			mazeDiv.toggle('hide')
+			document.getElementById('winner').classList.toggle('hide')
+		}
 		game.maze.reset(mazeSize/w)
 	}
 

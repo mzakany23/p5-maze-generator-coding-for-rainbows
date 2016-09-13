@@ -18,7 +18,8 @@ var Game = function(obj) {
 	}
 
 	this.finished = function() {
-		console.log('finisehd do something')
+		document.getElementById('winner').classList.toggle('hide')
+		document.getElementById('maze').classList.add('hide')
 	}
 
 	this.run = function() {

@@ -6,6 +6,10 @@
 			float:left;
 			min-width: 300px;
 		}
+		.hide {
+			display: none;
+		}
+
 	</style>
 
 	<title>maze-gen</title>
@@ -15,6 +19,7 @@
 
 <div class="uk-grid">
 	<div class="uk-container-center">
+
 		<h1>Maze Generator</h1>
 		<form id='ui-form' class="uk-form ui-form">
 			<fieldset>
@@ -39,8 +44,14 @@
 			<button class='uk-button-large uk-button-success' id='startId'>Start</button>
 	
 		</form>
+		<div id='winner' class='hide'>
+			<img src="./assets/img/tsw.png" width="450">
+			<h1>Winner.</h1>
+		</div>
 
+		<div class="show">
 		<div id="maze"></div>
+		</div>
 
 		<div class="footer">
 			<hr class="uk-grid-divider">

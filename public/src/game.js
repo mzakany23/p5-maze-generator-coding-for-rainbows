@@ -1,5 +1,3 @@
-var currentPlayer 
-
 var Game = function(obj) {
 	this.players = obj.players ? obj.players : []
 	

@@ -1,6 +1,3 @@
-var p5
-var game 
-
 var UI = function(obj) {
 	var gameInit = function(p) {
 
@@ -21,10 +18,11 @@ var UI = function(obj) {
 	}
 
 	this.update = function(obj) {
-		var s = obj.mazeSize
-		var w = obj.cellSize
+		var s = obj.gs
+		var w = obj.cs
 		var gs = s/w
-		p5.windowResized(obj.mazeSize)
+		p5.windowResized(s)
+		game.maze.setW(w)
 		game.maze.reset(gs)
 	}
 

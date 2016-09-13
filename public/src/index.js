@@ -1,16 +1,21 @@
+// globals
 var mazeSize = 400
 var w = 40
 var cycle = false
 var bgc = "#4650AB"
 var brc = "#E1F440"
 var players = [new Player({name: 'mike'})]
+var p5
+var game 
+var currentPlayer 
+var gridSize 
 
 // events
 var startBtn = document.getElementById('startId')
 var backgroundColor = document.getElementById('backgroundColorId')
 var borderColor = document.getElementById('borderColorId')
-var gridSize = document.getElementById('gridSize')
-var cellSize = document.getElementById('cellSize')
+var gridSizeInput = document.getElementById('gridSize')
+var cellSizeInput = document.getElementById('cellSize')
 
 function createGame(w,size,bgc,players) {		
 	ui = new UI({
@@ -27,14 +32,15 @@ function startListeners() {
 	startBtn.addEventListener('click',start)
 	backgroundColor.addEventListener('change',changeBackgroundColor)
 	borderColor.addEventListener('change',changeBorderColor)
-	gridSize.addEventListener('change',changeGridsize)
-	cellSize.addEventListener('change',changeCellsize)
+	gridSizeInput.addEventListener('change',updateSize)
+	cellSizeInput.addEventListener('change',updateSize)
 }
 
-function changeGridsize(e) {
+function updateSize(e) {
 	e.preventDefault()
-	mazeSize = parseInt(e.target.value)
-	ui.update({mazeSize:mazeSize,cellSize: 40})
+	mazeSize = gridSizeInput.value ? parseInt(gridSizeInput.value) : 400
+	cellSize = cellSizeInput.value ? parseInt(cellSizeInput.value) : 40
+	ui.update({gs:mazeSize,cs:cellSize})
 }
 
 function changeCellsize(e) {

@@ -1,5 +1,3 @@
-var gridSize 
-
 var Maze = function(obj) {
 	var size = obj.size 
 	var w = obj.w 
@@ -58,6 +56,10 @@ var Maze = function(obj) {
 
 	this.setGridSize = function(size) {
 		gridSize = size
+	}
+
+	this.setW = function(w) {
+		w = w
 	}
 
 	this.init = function(size) {

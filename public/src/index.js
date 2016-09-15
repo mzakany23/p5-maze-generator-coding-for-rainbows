@@ -29,5 +29,3 @@ var borderColor = document.getElementById('borderColorId')
 // game init
 createGame(w,mazeSize,bgc,players)
 startListeners()
-
-

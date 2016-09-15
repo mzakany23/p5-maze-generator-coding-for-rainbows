@@ -43,6 +43,10 @@ var UI = function(obj) {
 	this.idImage = function(id,src) {
 		document.getElementById(id).src = src
 	}
+
+	this.idToggle = function(id,cls) {
+		document.getElementById(id).classList.toggle(cls)
+	}
 }
 
 function createGame(w,size,bgc,players) {		

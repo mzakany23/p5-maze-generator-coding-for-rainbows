@@ -3,6 +3,16 @@ var Player = function(obj) {
 	this.image = obj.image
 	this.p5Image = null
 
+	var make2D = function(size) {
+		var grid = []
+		for (var x=0; x<size;x++){
+			for (var y=0; y<size;y++){
+				grid.push(new Cell(x,y,w))
+			}
+		}
+		return grid
+	}
+
 	var movements = {
 		position: function(x,y) {
 			return game.maze.maze[((x*gridSize)+y)]

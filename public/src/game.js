@@ -19,14 +19,14 @@ var Game = function(obj) {
 		this.maze.draw()
 		if (playerCount === players.length) {playerCount = 0}
 		currentPlayer = this.players[playerCount]
-		document.getElementById('currentPlayer').innerHTML = currentPlayer.name
+		ui.idText('currentPlayer',currentPlayer.name)
 		currentPlayer.show(this.maze.startCell)		
 		
 	}
 
 	this.finished = function() {
-		document.getElementById('winner').classList.toggle('hide')
-		document.getElementById('maze').classList.add('hide')
+		ui.idToggle('winner','hide')
+		ui.idToggle('maze','hide')
 		var text = `${currentPlayer.name} + Sandwich!`
 		ui.idText('winner-message',text)
 		ui.idImage('winner-image',currentPlayer.image)

@@ -19,6 +19,18 @@ var Maze = function(obj) {
 		}
 		return grid
 	}
+
+	var make2D = function() {
+		var grid = []
+		for (var x=0;x<size;x++) {
+			var row = []
+			for (var y=0;y<size;y++) {
+				row.push(new Cell(x,y,w))
+			}
+			grid.push(row)
+		}
+		return grid
+	})
  
 	var removeWalls = function(cell1,cell2) {
 		var x = cell1.x - cell2.x

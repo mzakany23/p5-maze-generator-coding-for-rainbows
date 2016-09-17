@@ -6,10 +6,10 @@ function Cell(x,y,w){
 	this.finalCell = false
 	
 	this.cellBorder = {
-		top: p5.line(x,y,x+w,y),
-		right: p5.line(x+w,y,x+w,y+w),
-		bottom: p5.line(x+w,y+w,x,y+w),
-		left: p5.line(x,y+w,x,y) 
+		top: true,
+		right: true,
+		bottom: true,
+		left: true
 	}
 
 	this.index = function(y,x) {
